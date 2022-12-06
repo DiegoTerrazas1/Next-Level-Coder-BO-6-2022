@@ -1,8 +1,15 @@
 import pygame
 
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.components.dinosaur import Dinosaur
 
-
+colors ={
+    "RED": (255, 0, 0),
+    "BLACK": (0, 0, 0),
+    "WHITE": (255, 255, 255),
+    "BLUE": (0, 0, 255),
+    "GREEN": (0, 255, 0),
+}
 class Game:
     def __init__(self):
         pygame.init()
@@ -14,6 +21,7 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
+        self.player = Dinosaur()
 
     def run(self):
         # Game loop: events - update - draw
@@ -30,12 +38,14 @@ class Game:
                 self.playing = False
 
     def update(self):
-        pass
+        user_input = pygame.key.get_pressed()
+        self.player.update(user_input)
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.fill(colors["WHITE"])#se maneja por "RGB" ,los colores ejemplo:R= rojo, G = verde, B = azul
         self.draw_background()
+        self.player.draw(self.screen)           #para cambiar el color ,bajar los valores ...
         pygame.display.update()
         pygame.display.flip()
 

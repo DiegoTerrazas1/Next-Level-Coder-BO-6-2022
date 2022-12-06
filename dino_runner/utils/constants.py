@@ -7,10 +7,12 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+#Es para hacer referencia al directorio donde estamos actualmente
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
-
+# carga la imagen que implementaremos, desde el directorio assets ,hasta la imagen demos de referencia,"nombre de
+# la imagen",guardadas en una lista.
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
