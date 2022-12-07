@@ -38,14 +38,14 @@ class Game:
                 self.playing = False
 
     def update(self):
-        user_input = pygame.key.get_pressed()
-        self.player.update(user_input)
+        user_input = pygame.key.get_pressed()#Nos devolvera la tecla que se va,a presionar dentro del juego
+        self.player.update(user_input)#para que se actulize con el teclado
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill(colors["WHITE"])#se maneja por "RGB" ,los colores ejemplo:R= rojo, G = verde, B = azul
         self.draw_background()
-        self.player.draw(self.screen)           #para cambiar el color ,bajar los valores ...
+        self.player.draw(self.screen)         #para cambiar el color ,bajar los valores ...
         pygame.display.update()
         pygame.display.flip()
 
