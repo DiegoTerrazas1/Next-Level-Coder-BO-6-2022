@@ -3,6 +3,9 @@ import pygame
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.components.dinosaur import Dinosaur
 
+from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+
+
 colors ={
     "RED": (255, 0, 0),
     "BLACK": (0, 0, 0),
@@ -22,6 +25,7 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.player = Dinosaur()
+        self.obstacle_maganer = ObstacleManager()
 
     def run(self):
         # Game loop: events - update - draw
@@ -40,12 +44,15 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()#Nos devolvera la tecla que se va,a presionar dentro del juego
         self.player.update(user_input)#para que se actulize con el teclado
+        self.obstacle_maganer.update(self.game_speed, self)
+
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill(colors["WHITE"])#se maneja por "RGB" ,los colores ejemplo:R= rojo, G = verde, B = azul
         self.draw_background()
-        self.player.draw(self.screen)         #para cambiar el color ,bajar los valores ...
+        self.player.draw(self.screen)
+        self.obstacle_maganer.draw(self.screen)         #para cambiar el color ,bajar los valores ...
         pygame.display.update()
         pygame.display.flip()
 

@@ -78,5 +78,5 @@ class Dinosaur(Sprite):
             self.jump_vel -= 0.8   #Salto, cuando  llega a negativo, baja
         if self.jump_vel < -self.JUMP_VEL:#cuando llega a jump_vel en negativo, este  se detiene
             self.dino_rect.y = self.POS_Y
-            self.dino_jump = False
+            self.dino_jump = False #
             self.jump_vel = self.JUMP_VEL
