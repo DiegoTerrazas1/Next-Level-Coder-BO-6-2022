@@ -5,6 +5,8 @@ from dino_runner.components.dinosaur import Dinosaur
 
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.obstacles.cloud import Cloud
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
+
 
 colors ={
     "RED": (255, 0, 0),
@@ -27,6 +29,8 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_maganer = ObstacleManager()
         self.cloud = Cloud()
+        self.points = 0
+        self.power_up_manager = PowerUpManager()
 
     def run(self):
         # Game loop: events - update - draw
@@ -46,7 +50,9 @@ class Game:
         user_input = pygame.key.get_pressed()#Nos devolvera la tecla que se va,a presionar dentro del juego
         self.player.update(user_input)#para que se actulize con el teclado
         self.obstacle_maganer.update(self.game_speed, self)
-        self.cloud.update(self.game_speed)
+        self.cloud.update(self.game_speed)  
+        self.power_up_manager.update(self.points, self.game_speed, self.player)
+        self.score()
 
 
     def draw(self):
@@ -54,10 +60,18 @@ class Game:
         self.screen.fill(colors["WHITE"])#se maneja por "RGB" ,los colores ejemplo:R= rojo, G = verde, B = azul
         self.draw_background()
         self.player.draw(self.screen)
-        self.obstacle_maganer.draw(self.screen) #para cambiar el color ,bajar los valores ...
+        self.obstacle_maganer.draw(self.screen) 
         self.cloud.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
+
+    def score(self):
+        self.points += 1 
+        if self.points % 100 == 0:
+            self.game_speed += 1
+            print(self.points)
+        self.player.check_invincibility()
 
     def draw_background(self):
         image_width = BG.get_width()
