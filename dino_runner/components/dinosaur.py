@@ -3,14 +3,20 @@ import pygame
 
 from pygame.sprite import Sprite
 from dino_runner.utils.constants import (
-    RUNNING ,
+    RUNNING,
     DUCKING,
     JUMPING,
     DEFAULT_TYPE,
     SHIELD_TYPE,
     DUCKING_SHIELD,
     RUNNING_SHIELD,
-    JUMPING_SHIELD
+    JUMPING_SHIELD,
+    JUMPING_HAMMER,
+    HAMMER,
+    HAMMER_TYPE,
+    DUCKING_HAMMER,
+    RUNNING_HAMMER,
+    JUMPING_HAMMER
     )
 
 
@@ -21,13 +27,11 @@ class Dinosaur(Sprite):
     JUMP_VEL = 8.5
 
     def __init__(self):
-        self.duck_img = {DEFAULT_TYPE : DUCKING, SHIELD_TYPE : DUCKING_SHIELD}
-        self.run_img = {DEFAULT_TYPE : RUNNING, SHIELD_TYPE : RUNNING_SHIELD}
-        self.jump_img = {DEFAULT_TYPE : JUMPING, SHIELD_TYPE : JUMPING_SHIELD}
+        self.duck_img = {DEFAULT_TYPE : DUCKING, SHIELD_TYPE : DUCKING_SHIELD, HAMMER_TYPE : DUCKING_HAMMER}
+        self.run_img = {DEFAULT_TYPE : RUNNING, SHIELD_TYPE : RUNNING_SHIELD, HAMMER_TYPE : RUNNING_HAMMER}
+        self.jump_img = {DEFAULT_TYPE : JUMPING_HAMMER, SHIELD_TYPE : JUMPING_SHIELD, HAMMER_TYPE : JUMPING_HAMMER}
         self.type = DEFAULT_TYPE                                      
-        self.image = self.run_img[self.type][0]
-        
-                                            
+        self.image = self.run_img[self.type][0]                                            
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.POS_X 
         self.dino_rect.y = self.POS_Y                               
@@ -37,6 +41,7 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.jump_vel = self.JUMP_VEL
         self.setup_states()
+        # self.song = pygame.mixer.Sound("aaa")
 
     def setup_states(self):
         self.has_powerup = False

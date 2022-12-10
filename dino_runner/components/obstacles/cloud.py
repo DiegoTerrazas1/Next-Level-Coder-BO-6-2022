@@ -2,7 +2,6 @@ from pygame.sprite import Sprite
 from dino_runner.utils.constants import CLOUD, SCREEN_WIDTH
 import random
 
-
 class Cloud(Sprite):
 
     def __init__(self):
@@ -18,4 +17,4 @@ class Cloud(Sprite):
         self.cloud_rect.x  -= game_speed
         if self.cloud_rect.x < 0:
             self.cloud_rect.x = SCREEN_WIDTH
-            self.cloud_rect.y = random.randint(0, 100)
+            self.cloud_rect.y = random.randint(0, 150)

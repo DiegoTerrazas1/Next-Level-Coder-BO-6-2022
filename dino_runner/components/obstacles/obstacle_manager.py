@@ -12,7 +12,7 @@ class ObstacleManager():
 
     def __init__(self):
         self.obstacles = []#para tener varios obstacles ,utilizaremos una lista[]
-
+        
 
     def update(self, game_speed, game):#si no tenemos ningun obstaculo en mi lista agregamos el cactus
         if len(self.obstacles) == 0:
@@ -31,6 +31,7 @@ class ObstacleManager():
                     game.playing = False
                     break
                 else:
+
                     self.obstacles.pop()
 
         
